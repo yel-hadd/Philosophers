@@ -1,6 +1,12 @@
 NAME = philo
 HEADER = philo.h
-SRC := main.c
+SRC := main.c \
+	utils/ft_bzero.c \
+	utils/ft_calloc.c \
+	utils/ft_memset.c \
+	utils/ft_strdup.c \
+	utils/ft_strlen.c \
+	utils/ft_memcpy.c
 
 OBJ        := $(SRC:.c=.o)
 
