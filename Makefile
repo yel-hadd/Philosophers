@@ -1,6 +1,11 @@
 NAME = philo
 HEADER = philo.h
 SRC := main.c \
+	utils/ft_isdigit.c \
+	utils/ft_strncmp.c \
+	utils/ft_atoi.c \
+	utils/new_philo.c \
+	utils/new_fork.c \
 	utils/ft_bzero.c \
 	utils/ft_calloc.c \
 	utils/ft_memset.c \
