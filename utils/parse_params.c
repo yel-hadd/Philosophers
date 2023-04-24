@@ -6,13 +6,13 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:21:40 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/22 21:21:51 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:47:21 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-t_num	*parse_params(char **arg, int arg_count)
+t_num	*parse_params(char **arg, int arg_count, long time)
 {
 	t_num	*node;
 
@@ -26,6 +26,7 @@ t_num	*parse_params(char **arg, int arg_count)
 	node->n_eat = -2;
 	if (arg_count == 6)
 		node->n_eat = ft_atoi(arg[5]);
+	node->ms = time;
 	node->f = NULL;
 	node->p = NULL;
 	node->next = NULL;
