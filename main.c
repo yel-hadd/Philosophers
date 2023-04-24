@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 18:43:30 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:41:31 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,7 @@ void	take_fork(t_fork *f)
 	
 }
 
-void    *routine(void *ptr)
-{
-	t_num   *m;
 
-	m = (t_num *) ptr;
-	while (1)
-	{
-		pthread_mutex_lock(&m->p->lf->lock);
-		pthread_mutex_lock(&m->p->rf->lock);
-		printf("%d %d has taken a fork");
-		pthread_mutex_unlock(&m->p->lf->lock);
-		pthread_mutex_unlock(&m->p->rf->lock);
-	}
-}
 
 int main(int ac, char **av)
 {
@@ -50,7 +37,7 @@ int main(int ac, char **av)
 	gettimeofday(&tv, NULL);
 	n = NULL;
 	fork = NULL;
-	n = parse_params(av, ac);
+	n = parse_params(av, ac, time.tv_sec);
 	if (!check_params(n))
 		return (1);
 	parse_forks(&n->f, n->n_phil);
