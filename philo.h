@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/22 22:58:45 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:43:48 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,26 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <pthread.h>
+# include <sys/time.h>;
 #include <stdio.h>
+
+struct timeval tv;
 
 typedef struct forks
 {
-	int id;
-	int	taken;
+	int				id;
+	int				taken;
+	pthread_mutex_t	lock;
 	struct forks	*next;
 } t_fork;
 
 typedef struct philosopher
 {
-	int	id;
-	t_fork *lf;
-	t_fork *rf;
-	struct philosopher *next;
+	int					id;
+	t_fork 				*lf;
+	t_fork 				*rf;
+	pthread_mutex_t		lock;
+	struct philosopher	*next;
 } t_philo;
 
 typedef struct num
