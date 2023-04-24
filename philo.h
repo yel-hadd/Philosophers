@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 20:16:03 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/24 21:15:44 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,14 @@ typedef struct philosopher
 {
 	int					id;
 	int					ttd;
-	int 				tte;
+	int					tte;
 	int					tts;
 	long				ms;
-	int					n_eat;
+	int					n_meals;
 	int					max_eat;
 	long				last_eat;
 	t_fork 				*lf;
 	t_fork 				*rf;
-	pthread_mutex_t		lock;
 	struct philosopher	*next;
 } t_philo;
 
@@ -63,7 +62,7 @@ typedef struct num
 } t_num;
 
 t_num	*parse_params(char **arg, int arg_count, long time);
-t_philo	*new_philo(int id, t_fork *r, t_fork *l, int max);
+t_philo	*new_philo(t_num *n, int id, t_fork *r, t_fork *l);
 void	parse_philos(t_num *n, t_fork **f, int n_phil);
 void	philo_add_back(t_philo **lst, t_philo *new);
 void	*ft_memcpy(void *dst, void *src, size_t n);
