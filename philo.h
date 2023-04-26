@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 21:15:44 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:28:45 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct philosopher
 	int					n_meals;
 	int					max_eat;
 	long				last_eat;
+	long				start_ts;
 	t_fork 				*lf;
 	t_fork 				*rf;
 	struct philosopher	*next;
