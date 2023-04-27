@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 21:22:59 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:25:18 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,22 @@ timestamp_in_ms X is thinking
 timestamp_in_ms X died
 */
 
-void	take_fork(t_fork *f)
-{
-	
-	
-}
-
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_num	*n;
 	t_fork	*fork;
-	struct	timeval	time;
+	long	time;
 
-	gettimeofday(&tv, NULL);
+	time = get_ms_ts(0);
 	n = NULL;
 	fork = NULL;
-	n = parse_params(av, ac, time.tv_sec);
+	n = parse_params(av, ac, time);
 	if (!check_params(n))
 		return (1);
 	parse_forks(&n->f, n->n_phil);
 	parse_philos(n, &n->f, n->n_phil);
 	return (0);
 }
-
 
 /*
 void *philosopher(void *arg)
