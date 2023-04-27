@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:19:20 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/22 21:19:30 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:25:36 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_params(t_num *no)
 {
 	if (no->ttd == -1 || no->tte == -1)
 		return (0);
-	if (no->tts == -1 || no->n_eat == -1)
+	if (no->tts == -1 || no->max_eat == -1)
 		return (0);
 	return (1);
 }
