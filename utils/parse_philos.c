@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:17:59 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 20:48:11 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:27:25 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	parse_philos(t_num *n, t_fork **f, int n_phil)
 	int		i;
 	t_fork	*right;
 	t_fork	*left;
+	t_philo	*node;
 
 	i = -1;
 	while (++i < n_phil)
@@ -37,6 +38,8 @@ void	parse_philos(t_num *n, t_fork **f, int n_phil)
 			left = get_fork(*f, n_phil -1);
 		else if (i == n_phil - 1)
 			right = get_fork(*f, 0);
-		philo_add_back(&n->p, new_philo(n, i, right, left));
+		node = new_philo(i, right, left);
+		node->args = n;
+		philo_add_back(&n->p, node);
 	}
 }
