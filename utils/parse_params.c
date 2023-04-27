@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:21:40 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/24 19:47:21 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:27:56 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ t_num	*parse_params(char **arg, int arg_count, long time)
 	node->ttd = ft_atoi(arg[2]);
 	node->tte = ft_atoi(arg[3]);
 	node->tts = ft_atoi(arg[4]);
-	node->n_eat = -2;
+	node->max_eat = -2;
 	if (arg_count == 6)
-		node->n_eat = ft_atoi(arg[5]);
-	node->ms = time;
+		node->max_eat = ft_atoi(arg[5]);
+	node->start_ts = time;
 	node->f = NULL;
 	node->p = NULL;
 	node->next = NULL;
