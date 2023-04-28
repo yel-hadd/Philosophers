@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/27 21:26:22 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:17:48 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct forks
 {
 	int				id;
 	int				taken;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	*lock;
 	struct forks	*next;
 } t_fork;
 
@@ -45,6 +45,7 @@ struct philosopher
 	int					id;
 	int					n_meals;
 	long				last_eat;
+	pthread_t			*thrd;
 	t_fork 				*lf;
 	t_fork 				*rf;
 	t_num				*args;
@@ -53,16 +54,17 @@ struct philosopher
 
 struct num
 {
-	int			n_phil;
-	int			ttd;
-	int			max_eat;
-	int 		tte;
-	int			tts;
-	t_philo		*p;
-	t_philo		*current;
-	long		start_ts;
-	t_fork		*f;
-	t_num		*next;
+	int				n_phil;
+	int				ttd;
+	int				max_eat;
+	int 			tte;
+	int				tts;
+	t_philo			*p;
+	long			start_ts;
+	pthread_mutex_t	*lock;
+	pthread_mutex_t	*plock;
+	t_fork			*f;
+	t_num			*next;
 };
 
 t_num	*parse_params(char **arg, int arg_count, long time);
@@ -83,6 +85,8 @@ int		ft_atoi(char *str);
 size_t	ft_strlen(char *s);
 int		ft_isdigit(int c);
 long 	get_ms_ts(long subtract);
+void    *routine(void *ptr);
+
 
 
 
