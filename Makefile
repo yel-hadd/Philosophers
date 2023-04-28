@@ -1,23 +1,24 @@
 NAME = philo
 HEADER = philo.h
-SRC := main.c \
-	utils/check_params.c \
-	utils/ft_memcpy.c \
-	utils/new_philo.c \
-	utils/fork_add_back.c \
-	utils/ft_memset.c \
-	utils/parse_forks.c \
-	utils/ft_atoi.c \
-	utils/ft_strdup.c \
-	utils/parse_params.c \
-	utils/ft_bzero.c \
-	utils/ft_strlen.c \
-	utils/ft_calloc.c \
-	utils/ft_strncmp.c \
-	utils/philo_add_back.c \
-	utils/ft_isdigit.c \
-	utils/new_fork.c \
-	utils/parse_philos.c
+SRC = main.c \
+	check_params.c \
+	ft_isdigit.c \
+	ft_strncmp.c \
+	parse_philos.c \
+	fork_add_back.c \
+	ft_memcpy.c \
+	new_fork.c \
+	philo_add_back.c \
+	ft_atoi.c \
+	ft_memset.c \
+	new_philo.c \
+	routine.c \
+	ft_bzero.c \
+	ft_strdup.c \
+	parse_forks.c \
+	ft_calloc.c \
+	ft_strlen.c \
+	parse_params.c
 
 OBJ        := $(SRC:.c=.o)
 
