@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:54:29 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/28 16:58:04 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:04:06 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_philo	*new_philo(int id, t_fork *r, t_fork *l)
 	node->id = id;
 	node->lf = l;
 	node->rf = r;
-	node->last_eat = 0;
+	node->last_eat = -1;
 	node->n_meals = 0;
 	node->thrd = t;
 	node->next = NULL;

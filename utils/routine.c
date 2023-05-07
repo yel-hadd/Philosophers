@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/07 15:50:24 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:04:36 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,26 @@ void    *routine(void *ptr)
 	{
 		// PICK UP LEFT FORK
 		pthread_mutex_lock(m->lf->lock);
-		pthread_mutex_lock(args->lock);
+		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
-		pthread_mutex_unlock(args->lock);
+		pthread_mutex_unlock(args->plock);
 		// PICK UP RIGHT FORK
 		pthread_mutex_lock(m->rf->lock);
-		pthread_mutex_lock(args->lock);
+		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
-		pthread_mutex_unlock(args->lock);
-
+		pthread_mutex_unlock(args->plock);
 		// EAT
-		m->last_eat = get_ms_ts(args->start_ts);
-		pthread_mutex_lock(args->lock);
-		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
-		pthread_mutex_unlock(args->lock);
 		// TODO: protect
+		pthread_mutex_lock(args->lock);
+		m->last_eat = get_ms_ts(args->start_ts);
+		pthread_mutex_unlock(args->lock);
+		pthread_mutex_lock(args->plock);
+		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
+		pthread_mutex_unlock(args->plock);
+		// TODO: protect
+		pthread_mutex_lock(args->lock);
 		m->n_meals += 1;
+		pthread_mutex_unlock(args->lock);
 		ft_usleep(args->tte);
 		// PUT DOWN LEFT FORK
 		pthread_mutex_unlock(m->lf->lock);
@@ -79,7 +83,6 @@ void    *routine(void *ptr)
 		printf("%ld\t%d\tis sleeping\n", get_ms_ts(args->start_ts), m->id);
 		pthread_mutex_unlock(args->lock);
 		ft_usleep(args->tts);
-		//printf("%ld %d put down a fork\n", get_ms_ts(args->start_ts), m->id);
 		// THINK
 		printf("%ld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
 	}
