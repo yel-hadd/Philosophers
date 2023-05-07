@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/07 21:04:36 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:38:00 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void    *routine(void *ptr)
 {
 	t_philo			*m;
 	t_num			*args;
-	//pthread_mutex_t	lock;
 
 	m = (t_philo *) ptr;
 	args = m->args;
@@ -62,14 +61,12 @@ void    *routine(void *ptr)
 		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
 		pthread_mutex_unlock(args->plock);
 		// EAT
-		// TODO: protect
 		pthread_mutex_lock(args->lock);
 		m->last_eat = get_ms_ts(args->start_ts);
 		pthread_mutex_unlock(args->lock);
 		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
 		pthread_mutex_unlock(args->plock);
-		// TODO: protect
 		pthread_mutex_lock(args->lock);
 		m->n_meals += 1;
 		pthread_mutex_unlock(args->lock);

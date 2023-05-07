@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/03 20:18:00 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 21:38:41 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int ac, char **av)
 	t_fork	*fork;
 	long	time;
 	t_philo	*tmp;
-	pthread_mutex_t	lock;
+	//pthread_mutex_t	lock;
 
-	pthread_mutex_init(&lock, NULL);
+	//pthread_mutex_init(&lock, NULL);
 	time = get_ms_ts(0);
 	n = NULL;
 	fork = NULL;
@@ -40,10 +40,8 @@ int	main(int ac, char **av)
 	tmp = n->p;
 	while (tmp != NULL)
 	{
-		pthread_mutex_lock(&lock);
 		pthread_create(tmp->thrd, NULL, routine, tmp);
 		tmp = tmp->next;
-		pthread_mutex_unlock(&lock);
 	}
 	tmp = n->p;
 	while (tmp != NULL)
