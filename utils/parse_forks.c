@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:17:24 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/22 21:17:39 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:17:39 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ void	parse_forks(t_fork **f, int n_phil)
 
 	i = -1;
 	while (++i < n_phil)
-		fork_add_back(f, new_fork(i, 0));
+		fork_add_back(f, new_fork(i));
 }

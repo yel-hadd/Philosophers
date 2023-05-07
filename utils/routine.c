@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/07 13:48:35 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:50:24 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ long get_ms_ts(long subtract)
 	return (time_stamp);
 }
 
+void	ft_usleep(long tts)
+{
+	long start;
+
+	start  = get_ms_ts(0);
+	while(get_ms_ts(0) - start <= tts)
+		usleep(10);
+}
+
 void    *routine(void *ptr)
 {
 	t_philo			*m;
@@ -39,33 +48,40 @@ void    *routine(void *ptr)
 	m = (t_philo *) ptr;
 	args = m->args;
 	if (m->id % 2 == 0)
-		usleep(1000);
+		ft_usleep(100);
 	while (1)
 	{
 		// PICK UP LEFT FORK
-		pthread_mutex_lock(m->args->lock);
-		printf("%ld %d has taken a fork\n", get_ms_ts(args->start_ts), m->id);
-		pthread_mutex_unlock(m->args->lock);
+		pthread_mutex_lock(m->lf->lock);
+		pthread_mutex_lock(args->lock);
+		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->lock);
 		// PICK UP RIGHT FORK
 		pthread_mutex_lock(m->rf->lock);
-		printf("%ld %d has taken a fork\n", get_ms_ts(args->start_ts), m->id);
-		pthread_mutex_unlock(m->args->lock);
+		pthread_mutex_lock(args->lock);
+		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->lock);
+
 		// EAT
 		m->last_eat = get_ms_ts(args->start_ts);
-		pthread_mutex_lock(m->args->lock);
-		printf("%ld %d is eating\n", m->last_eat, m->id);
-		pthread_mutex_unlock(m->args->lock);
-		usleep(args->tte);
+		pthread_mutex_lock(args->lock);
+		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
+		pthread_mutex_unlock(args->lock);
+		// TODO: protect
 		m->n_meals += 1;
+		ft_usleep(args->tte);
 		// PUT DOWN LEFT FORK
 		pthread_mutex_unlock(m->lf->lock);
 		// PUT DOWN RIGHT FORK
 		pthread_mutex_unlock(m->rf->lock);
 		// SLEEP
-		usleep(args->tts);
+		pthread_mutex_lock(args->lock);
+		printf("%ld\t%d\tis sleeping\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->lock);
+		ft_usleep(args->tts);
 		//printf("%ld %d put down a fork\n", get_ms_ts(args->start_ts), m->id);
 		// THINK
-		printf("%ld %d is thinking\n", get_ms_ts(args->start_ts), m->id);
+		printf("%ld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
 	}
 	return (NULL);
 }
