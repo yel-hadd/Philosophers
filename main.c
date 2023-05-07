@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/28 19:53:55 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/03 20:18:00 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	main(int ac, char **av)
 	t_fork	*fork;
 	long	time;
 	t_philo	*tmp;
+	pthread_mutex_t	lock;
 
+	pthread_mutex_init(&lock, NULL);
 	time = get_ms_ts(0);
 	n = NULL;
 	fork = NULL;
@@ -38,8 +40,10 @@ int	main(int ac, char **av)
 	tmp = n->p;
 	while (tmp != NULL)
 	{
-		pthread_create(tmp->thrd, NULL, routine, &tmp);
+		pthread_mutex_lock(&lock);
+		pthread_create(tmp->thrd, NULL, routine, tmp);
 		tmp = tmp->next;
+		pthread_mutex_unlock(&lock);
 	}
 	tmp = n->p;
 	while (tmp != NULL)
@@ -51,24 +55,9 @@ int	main(int ac, char **av)
 }
 
 /*
-void *philosopher(void *arg)
-{
-	int id = *(int*)arg; // get the philosopher's ID from the argument
-	int left = id; // the left fork is the philosopher's ID
-	int right = (id+1) % N; // the right fork is the next philosopher's ID
-	while(1) // loop forever
+	while (n->p != NULL)
 	{
-		printf("Philosopher %d is thinking\n", id); // print a message indicating that the philosopher is thinking
-		sleep(rand()%3); // sleep for a random amount of time to simulate thinking
-		sem_wait(&mutex); // acquire the mutex semaphore to prevent other philosophers from accessing the forks
-		sem_wait(&forks[left]); // acquire the semaphore for the left fork
-		sem_wait(&forks[right]); // acquire the semaphore for the right fork
-		printf("Philosopher %d is eating\n", id); // print a message indicating that the philosopher is eating
-		sleep(rand()%3); // sleep for a random amount of time to simulate eating
-		sem_post(&forks[right]); // release the semaphore for the right fork
-		sem_post(&forks[left]); // release the semaphore for the left fork
-		sem_post(&mutex); // release the mutex semaphore
+		printf("id: %d | right fork id : %d | left fork id : %d\n", n->p->id, n->p->rf->id, n->p->lf->id);
+		n->p = n->p->next;
 	}
-	return NULL; // this line will never be reached, but we need to return something
-}
 */

@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:21:40 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/04/28 16:56:31 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:19:55 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_num	*parse_params(char **arg, int arg_count, long time)
 	node->max_eat = -2;
 	if (arg_count == 6)
 		node->max_eat = ft_atoi(arg[5]);
-	printf("-------***%d\n", node->max_eat);
 	node->start_ts = time;
 	lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (lock == NULL)
