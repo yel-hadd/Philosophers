@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/07 21:38:00 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:02:51 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,24 @@ long get_ms_ts(long subtract)
 	return (time_stamp);
 }
 
-void	ft_usleep(long tts)
+void	ft_usleep(long tts, t_num *args, t_philo *m)
 {
 	long start;
 
 	start  = get_ms_ts(0);
 	while(get_ms_ts(0) - start <= tts)
-		usleep(10);
+	{
+		if (get_ms_ts(m->last_eat) >= args->ttd && m->last_eat > 0)
+		{
+			pthread_mutex_lock(args->lock);
+			args->funeral = 1;
+			pthread_mutex_unlock(args->lock);
+			pthread_mutex_lock(args->plock);
+			printf("%ld\t%d\tdied\n", get_ms_ts(args->start_ts), m->id);
+			break;
+		}
+		usleep(100);
+	}
 }
 
 void    *routine(void *ptr)
@@ -47,8 +58,8 @@ void    *routine(void *ptr)
 	m = (t_philo *) ptr;
 	args = m->args;
 	if (m->id % 2 == 0)
-		ft_usleep(100);
-	while (1)
+		usleep(1000);
+	while (m->n_meals != args->max_eat && args->funeral < 1)
 	{
 		// PICK UP LEFT FORK
 		pthread_mutex_lock(m->lf->lock);
@@ -63,25 +74,25 @@ void    *routine(void *ptr)
 		// EAT
 		pthread_mutex_lock(args->lock);
 		m->last_eat = get_ms_ts(args->start_ts);
+		m->n_meals += 1;
 		pthread_mutex_unlock(args->lock);
 		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
 		pthread_mutex_unlock(args->plock);
-		pthread_mutex_lock(args->lock);
-		m->n_meals += 1;
-		pthread_mutex_unlock(args->lock);
-		ft_usleep(args->tte);
+		ft_usleep(args->tte, args, m);
 		// PUT DOWN LEFT FORK
 		pthread_mutex_unlock(m->lf->lock);
 		// PUT DOWN RIGHT FORK
 		pthread_mutex_unlock(m->rf->lock);
 		// SLEEP
-		pthread_mutex_lock(args->lock);
+		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\tis sleeping\n", get_ms_ts(args->start_ts), m->id);
-		pthread_mutex_unlock(args->lock);
-		ft_usleep(args->tts);
+		pthread_mutex_unlock(args->plock);
+		ft_usleep(args->tts, args, m);
 		// THINK
+		pthread_mutex_lock(args->plock);
 		printf("%ld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->plock);
 	}
 	return (NULL);
 }

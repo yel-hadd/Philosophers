@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/07 15:18:02 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:52:19 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ struct philosopher
 
 struct num
 {
+	int				funeral;
 	int				n_phil;
 	int				ttd;
 	int				max_eat;
