@@ -1,1 +1,1 @@
-gcc -Wall -Werror -Wextra -g main.c utils/*
+gcc -Wall -Werror -Wextra -g main.c utils/* -o philo
