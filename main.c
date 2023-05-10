@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/10 21:34:45 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:35:29 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,5 @@ int	main(int ac, char **av)
 		pthread_join(*tmp->thrd, NULL);
 		tmp = tmp->next;
 	}
-	// while (n->funeral < 1)
-	// {
-	// 	usleep(10);
-	// }
-	
-	
 	return (0);
 }
