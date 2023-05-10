@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/09 16:02:51 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:11:28 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,11 @@ void    *routine(void *ptr)
 		pthread_mutex_unlock(args->plock);
 		// EAT
 		pthread_mutex_lock(args->lock);
-		m->last_eat = get_ms_ts(args->start_ts);
+		m->last_eat = get_ms_ts(0);
 		m->n_meals += 1;
 		pthread_mutex_unlock(args->lock);
 		pthread_mutex_lock(args->plock);
-		printf("%ld\t%d\tis eating\n", m->last_eat, m->id);
+		printf("%ld\t%d\tis eating\n", get_ms_ts(args->start_ts), m->id);
 		pthread_mutex_unlock(args->plock);
 		ft_usleep(args->tte, args, m);
 		// PUT DOWN LEFT FORK
