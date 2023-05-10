@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/10 21:36:17 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/10 22:35:25 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_usleep(long tts, t_num *args, t_philo *m)
 	long start;
 
 	start  = get_ms_ts(0);
-	while((get_ms_ts(0) - start <= tts) && (args->funeral != 1))
+	while((get_ms_ts(m->last_eat) - start <= tts) && (args->funeral != 1))
 	{
 		if (get_ms_ts(m->last_eat) >= args->ttd && m->last_eat > 0)
 		{
@@ -47,6 +47,7 @@ void	ft_usleep(long tts, t_num *args, t_philo *m)
 			pthread_mutex_lock(args->plock);
 			printf("%ld\t%d\tdied\n", get_ms_ts(args->start_ts), m->id);
 			pthread_mutex_unlock(args->plock);
+			break ;
 		}
 		else
 			usleep(1);
