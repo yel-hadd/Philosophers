@@ -6,7 +6,11 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/11 16:35:01 by yel-hadd         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/10 22:35:25 by yel-hadd         ###   ########.fr       */
+>>>>>>> parent of 7e727fc (some progress, still buggy)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +25,10 @@ timestamp_in_ms X died
 9160
 */
 
-long long get_ms_ts(long subtract)
+long get_ms_ts(long subtract)
 {
 	struct timeval	tv;
-	long long		time_stamp;
+	long		time_stamp;
 
 	gettimeofday(&tv, NULL);
 	time_stamp = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
@@ -35,22 +39,23 @@ long long get_ms_ts(long subtract)
 void	ft_usleep(long tts, t_num *args, t_philo *m)
 {
 	long start;
-	long long var;
 
 	start  = get_ms_ts(0);
-	while((get_ms_ts(0) - start < tts) && args->funeral != 1)
+	while((get_ms_ts(m->last_eat) - start <= tts) && (args->funeral != 1))
 	{
-		if (get_ms_ts(m->last_eat) >= args->ttd)
+		if (get_ms_ts(m->last_eat) >= args->ttd && m->last_eat > 0)
 		{
-			var = get_ms_ts(args->start_ts);
 			pthread_mutex_lock(args->lock);
 			args->funeral = 1;
 			pthread_mutex_unlock(args->lock);
-			printf("%lld\t%d\tdied\n", var, m->id);
-			return;
+			pthread_mutex_lock(args->plock);
+			printf("%ld\t%d\tdied\n", get_ms_ts(args->start_ts), m->id);
+			pthread_mutex_unlock(args->plock);
+			break ;
 		}
-		usleep(10);
-	}	
+		else
+			usleep(1);
+	}
 }
 
 void	eating(t_num *args, t_philo *m)
@@ -65,7 +70,7 @@ void	eating(t_num *args, t_philo *m)
 	m->n_meals += 1;
 	pthread_mutex_unlock(args->lock);
 	pthread_mutex_lock(args->plock);
-	printf("%lld\t%d\tis eating\n", get_ms_ts(args->start_ts), m->id);
+	printf("%ld\t%d\tis eating\n", get_ms_ts(args->start_ts), m->id);
 	pthread_mutex_unlock(args->plock);
 	ft_usleep(args->tte, args, m);
 }
@@ -79,7 +84,7 @@ void	sleeping(t_num *args, t_philo *m)
 		return ;
 	}
 	pthread_mutex_lock(args->plock);
-	printf("%lld\t%d\tis sleeping\n", get_ms_ts(args->start_ts), m->id);
+	printf("%ld\t%d\tis sleeping\n", get_ms_ts(args->start_ts), m->id);
 	pthread_mutex_unlock(args->plock);
 	ft_usleep(args->tts, args, m);
 }
@@ -93,33 +98,13 @@ void	thinking(t_num *args, t_philo *m)
 		return ;
 	}
 	pthread_mutex_unlock(args->lock);
+<<<<<<< HEAD
 	printf("%lld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
-}
-
-void	take_lfork(t_num *args, t_philo *m)
-{
-	pthread_mutex_lock(args->lock);
-	if (args->funeral == 1)
-	{
-		pthread_mutex_unlock(args->lock);
-		return ;
-	}
-	pthread_mutex_lock(m->lf->lock);
-	printf("%lld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
-	pthread_mutex_unlock(args->lock);
-}
-
-void	take_rfork(t_num *args, t_philo *m)
-{
-	pthread_mutex_lock(args->lock);
-	if (args->funeral == 1)
-	{
-		pthread_mutex_unlock(args->lock);
-		return ;
-	}
-	pthread_mutex_lock(m->rf->lock);
-	printf("%lld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
-	pthread_mutex_unlock(args->lock);
+=======
+	pthread_mutex_lock(args->plock);
+	printf("%ld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
+	pthread_mutex_unlock(args->plock);
+>>>>>>> parent of 7e727fc (some progress, still buggy)
 }
 
 void    *routine(void *ptr)
@@ -134,9 +119,15 @@ void    *routine(void *ptr)
 	while (m->n_meals != args->max_eat && args->funeral < 1)
 	{
 		// PICK UP LEFT FORK
-		take_lfork(args, m);
+		pthread_mutex_lock(m->lf->lock);
+		pthread_mutex_lock(args->plock);
+		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->plock);
 		// PICK UP RIGHT FORK
-		take_rfork(args, m);
+		pthread_mutex_lock(m->rf->lock);
+		pthread_mutex_lock(args->plock);
+		printf("%ld\t%d\thas taken a fork\n", get_ms_ts(args->start_ts), m->id);
+		pthread_mutex_unlock(args->plock);
 		// EAT
 		eating(args, m);
 		// PUT DOWN LEFT FORK
