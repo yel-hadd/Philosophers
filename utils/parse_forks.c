@@ -14,7 +14,7 @@
 
 void	parse_forks(t_fork **f, int n_phil)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (++i < n_phil)
