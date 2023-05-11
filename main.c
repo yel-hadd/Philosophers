@@ -47,6 +47,8 @@ int	main(int ac, char **av)
 		pthread_join(*tmp->thrd, NULL);
 		tmp = tmp->next;
 	}
+<<<<<<< HEAD
+=======
 	
 >>>>>>> parent of c957e7f (Revert "fixed infinite loop")
 	return (0);
