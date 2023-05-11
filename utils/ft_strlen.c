@@ -22,7 +22,7 @@ size_t	ft_strlen(char *s)
 	while (s[i])
 	{
 		count += 1;
-		i ++;
+		i++;
 	}
 	return (count);
 }
