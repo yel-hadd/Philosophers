@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 19:32:48 by yel-hadd         ###   ########.fr       */
+/*   Created: 2023/05/11 19:28:42 by yel-hadd          #+#    #+#             */
+/*   Updated: 2023/05/11 19:29:49 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../philo.h"
 
-int	main(int ac, char **av)
+void	free_data(t_num *n)
 {
-	t_num *n;
-	long time;
+	t_philo	*tmp;
+	t_philo	*next;
 
-	time = get_ms_ts(0);
-	n = NULL;
-	n = parse_params(av, ac, time);
-	if (!check_params(n))
-		return (1);
-	parse_forks(&n->f, n->n_phil);
-	parse_philos(n, &n->f, n->n_phil);
-	start_threads(n);
-	join_threads(n);
-	free_data(n);
-	return (0);
+	tmp = n->p;
+	free(n->lock);
+	free(n->plock);
+	free_forks(n->f);
+	while (tmp != NULL)
+	{
+		next = tmp->next;
+		free(tmp->thrd);
+		free(tmp);
+		tmp = next;
+	}
+	free(n);
 }

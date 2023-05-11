@@ -6,42 +6,11 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 18:32:22 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:25:22 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-long	get_ms_ts(long subtract)
-{
-	struct timeval	tv;
-	long			time_stamp;
-
-	gettimeofday(&tv, NULL);
-	time_stamp = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-	time_stamp -= subtract;
-	return (time_stamp);
-}
-
-void	ft_usleep(long tts, t_num *args, t_philo *m)
-{
-	long	start;
-
-	start = get_ms_ts(0);
-	while (get_ms_ts(0) - start <= tts && args->funeral < 1)
-	{
-		if (get_ms_ts(m->last_eat) >= args->ttd && m->last_eat > 0)
-		{
-			pthread_mutex_lock(args->lock);
-			args->funeral = 1;
-			pthread_mutex_unlock(args->lock);
-			printf("%ld\t%d\tdied\n", get_ms_ts(args->start_ts), m->id);
-		}
-		if (args->funeral == 1)
-			return ;
-		usleep(10);
-	}
-}
 
 t_philo	*pickup_forks(t_philo *m)
 {
@@ -95,19 +64,23 @@ void	*routine(void *ptr)
 {
 	t_philo *m;
 	t_num *args;
+	int one;
 
 	m = (t_philo *)ptr;
 	args = m->args;
-
+	one = 0;
 	if (m->id % 2 == 0)
 		usleep(1000);
 	while (m->n_meals != args->max_eat && args->funeral < 1)
 	{
-		m = pickup_forks(m);
+		if (one != 1)
+			m = pickup_forks(m);
 		m = start_eating(m, args);
 		put_down_forks(m);
 		m = start_sleeping(m, args);
 		m = start_thinking(m, args);
+		if (one == 0 && args->n_phil == 1)
+			one = 1;
 	}
 	return (NULL);
 }
