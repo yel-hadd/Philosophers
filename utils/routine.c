@@ -6,11 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/11 16:35:01 by yel-hadd         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/10 22:35:25 by yel-hadd         ###   ########.fr       */
->>>>>>> parent of 7e727fc (some progress, still buggy)
+/*   Updated: 2023/05/11 16:58:33 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +94,9 @@ void	thinking(t_num *args, t_philo *m)
 		return ;
 	}
 	pthread_mutex_unlock(args->lock);
-<<<<<<< HEAD
-	printf("%lld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
-=======
 	pthread_mutex_lock(args->plock);
 	printf("%ld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
 	pthread_mutex_unlock(args->plock);
->>>>>>> parent of 7e727fc (some progress, still buggy)
 }
 
 void    *routine(void *ptr)
