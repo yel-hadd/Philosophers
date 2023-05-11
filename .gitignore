@@ -1,2 +1,7 @@
-*.o*
-test*
+*
+!.gitignore
+!philo.h
+!Makefile
+!utils/*.c
+!main.c
+!*/
