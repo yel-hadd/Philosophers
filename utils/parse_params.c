@@ -14,8 +14,8 @@
 
 t_num	*parse_params(char **arg, int arg_count, long time)
 {
-	t_num	*node;
-	pthread_mutex_t *lock;
+	t_num			*node;
+	pthread_mutex_t	*lock;
 
 	node = (t_num *)malloc(sizeof(t_num));
 	if (!node)
@@ -30,11 +30,11 @@ t_num	*parse_params(char **arg, int arg_count, long time)
 	node->start_ts = time;
 	lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (lock == NULL)
-	    return NULL;
+		return (NULL);
 	node->lock = lock;
 	lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (lock == NULL)
-	    return NULL;
+		return (NULL);
 	node->plock = lock;
 	pthread_mutex_init(node->lock, NULL);
 	pthread_mutex_init(node->plock, NULL);
