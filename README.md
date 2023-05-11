@@ -20,7 +20,29 @@ The simulation will print out a log of the events that occur. This log will incl
 ## Example output
 Here is an example of the output that the simulation might produce:
 ```bash
-echo
+./philo 4 200 100 50 1
+```
+```text
+0	1	has taken a fork
+0	1	has taken a fork
+0	1	is eating
+0	3	has taken a fork
+0	3	has taken a fork
+0	3	is eating
+101	1	is sleeping
+101	2	has taken a fork
+101	2	has taken a fork
+101	2	is eating
+101	3	is sleeping
+101	4	has taken a fork
+101	4	has taken a fork
+101	4	is eating
+152	1	is thinking
+152	3	is thinking
+202	4	is sleeping
+202	2	is sleeping
+253	4	is thinking
+253	2	is thinking
 ```
 ## Challenges
 There are a number of challenges that you will need to overcome in order to successfully complete this project. These challenges include:
