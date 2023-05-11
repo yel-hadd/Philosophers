@@ -14,11 +14,11 @@
 
 static int	filter(char *str)
 {
-	if ((ft_strlen(str) >= 19)
-		&& (ft_strncmp(str, "9223372036854775807", 19) >= 0))
+	if ((ft_strlen(str) >= 19) && (ft_strncmp(str, "9223372036854775807",
+				19) >= 0))
 		return (-1);
-	if ((ft_strlen(str) >= 20)
-		&& (ft_strncmp(str, "-9223372036854775807", 20) >= 0))
+	if ((ft_strlen(str) >= 20) && (ft_strncmp(str, "-9223372036854775807",
+				20) >= 0))
 		return (0);
 	return (1);
 }
@@ -48,19 +48,19 @@ int	ft_atoi(char *str)
 	result = 0;
 	sign = 1;
 	while (ft_isspace(*str))
-		str ++;
-	if (filter((char *) str) != 1)
-		return (filter((char *) str));
+		str++;
+	if (filter((char *)str) != 1)
+		return (filter((char *)str));
 	if ((*str == '-') || (*str == '+'))
 	{
 		if (*str == '-')
 			sign = -1;
-		str ++;
+		str++;
 	}
 	while (*str && ft_isdigit(*str))
 	{
 		result = (result * 10) + (*str - 48);
-		str ++;
+		str++;
 	}
 	return (result * sign);
 }
