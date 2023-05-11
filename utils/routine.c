@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/10 23:13:13 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:35:01 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ void	thinking(t_num *args, t_philo *m)
 		return ;
 	}
 	pthread_mutex_unlock(args->lock);
-	pthread_mutex_lock(args->plock);
 	printf("%lld\t%d\tis thinking\n", get_ms_ts(args->start_ts), m->id);
-	pthread_mutex_unlock(args->plock);
 }
 
 void	take_lfork(t_num *args, t_philo *m)
@@ -148,8 +146,8 @@ void    *routine(void *ptr)
 		// SLEEP
 		sleeping(args, m);
 		// THINK
+		printf("%d\n", args->funeral);
 		thinking(args, m);
-		printf("**\n");
 
 	}
 	return (NULL);
