@@ -6,23 +6,18 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 19:31:50 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:12:56 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLONG_H
-# define SOLONG_H
+#ifndef PHILO_H
+# define PHILO_H
 
-# include <fcntl.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
-
-# define EAT 0
-# define SLEEP 1
-# define DEAD
 
 struct timeval					tv;
 
@@ -92,7 +87,6 @@ void	join_threads(t_num *n);
 void	free_forks(t_fork *f);
 char	*ft_strdup(char *s1);
 void	free_data(t_num *n);
-void	*routine(void *ptr);
 void	*routine(void *ptr);
 size_t	ft_strlen(char *s);
 int		ft_atoi(char *str);
