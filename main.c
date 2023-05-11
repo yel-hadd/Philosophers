@@ -6,11 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/10 21:35:29 by yel-hadd         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/10 21:29:30 by yel-hadd         ###   ########.fr       */
->>>>>>> parent of c957e7f (Revert "fixed infinite loop")
+/*   Updated: 2023/05/11 16:38:29 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +39,6 @@ int	main(int ac, char **av)
 		pthread_join(*tmp->thrd, NULL);
 		tmp = tmp->next;
 	}
-<<<<<<< HEAD
-=======
 	
 >>>>>>> parent of c957e7f (Revert "fixed infinite loop")
 	return (0);
