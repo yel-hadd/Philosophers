@@ -14,11 +14,12 @@
 
 t_fork	*new_fork(int id)
 {
-	t_fork	*node;
+	t_fork			*node;
+	pthread_mutex_t	*lock;
 
-	pthread_mutex_t *lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+	lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
 	if (lock == NULL)
-	    return NULL;
+		return (NULL);
 	node = (t_fork *)malloc(sizeof(t_fork));
 	node->lock = lock;
 	pthread_mutex_init(node->lock, NULL);
