@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
+/*   Updated: 2023/05/11 17:02:05 by yel-hadd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	main(int ac, char **av)
@@ -27,9 +39,5 @@ int	main(int ac, char **av)
 		pthread_join(*tmp->thrd, NULL);
 		tmp = tmp->next;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> parent of c957e7f (Revert "fixed infinite loop")
 	return (0);
 }
