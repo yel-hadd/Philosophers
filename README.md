@@ -1,5 +1,8 @@
 # Philosophers
-This project is a simulation of dining philosophers. In the simulation, there are a number of philosophers sitting at a round table. There is a bowl of spaghetti in the middle of the table, and each philosopher needs two forks to eat. The philosophers can only eat when they have both forks. However, there are only as many forks as there are philosophers, so there is always the possibility that a philosopher will not be able to get both forks and will starve.
+This project is a simulation of dining philosophers. In the simulation, there are a number of philosophers sitting at a round table. There is a bowl of spaghetti in the middle of the table, and each philosopher needs two forks to eat. The philosophers can only eat when they have both forks.
+
+However, there are only as many forks as there are philosophers, so there is always the possibility that a philosopher will not be able to get both forks and will starve.
+
 The goal of the simulation is to find a way to ensure that all of the philosophers can eat without starving. There are a number of different ways to do this, and the challenge is to find the most efficient and elegant solution.
 ## How to run the project
 To run the project, you will need to have a C compiler installed. Once you have a compiler, you can compile the project by running the following command:
