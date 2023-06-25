@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/06/25 13:11:09 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 14:18:53 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ struct							philosopher
 
 struct							num
 {
-	int							funeral;
 	int							n_phil;
 	int							ttd;
 	int							max_eat;
@@ -64,7 +63,7 @@ struct							num
 
 t_num	*parse_params(char **arg, int arg_count, long time);
 void	parse_philos(t_num *n, t_fork **f, int n_phil);
-void	ft_usleep(long tts, t_num *args, t_philo *m);
+void	ft_usleep(long tts);
 void	philo_add_back(t_philo **lst, t_philo *new);
 void	*ft_memcpy(void *dst, void *src, size_t n);
 t_philo	*new_philo(int id, t_fork *r, t_fork *l);

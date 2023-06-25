@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 21:21:40 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/09 14:57:42 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 14:19:07 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ t_num	*parse_params(char **arg, int arg_count, long time)
 	node->f = NULL;
 	node->p = NULL;
 	node->next = NULL;
-	node->funeral = 0;
 	return (node);
 }
