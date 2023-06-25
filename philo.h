@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 20:12:56 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 13:11:09 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ size_t	ft_strlen(char *s);
 int		ft_atoi(char *str);
 t_fork	*new_fork(int id);
 int		ft_isdigit(int c);
-
-
+void	ft_sleep(long tts);
 
 #endif

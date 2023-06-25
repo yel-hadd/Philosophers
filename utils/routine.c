@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 19:31:44 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 19:25:22 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 13:02:37 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	*routine(void *ptr)
 	args = m->args;
 	one = 0;
 	if (m->id % 2 == 0)
-		usleep(1000);
+		usleep(100);
 	while (m->n_meals != args->max_eat && args->funeral < 1)
 	{
 		if (one != 1)

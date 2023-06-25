@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 19:24:59 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/05/11 19:25:24 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 13:10:49 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ void	ft_usleep(long tts, t_num *args, t_philo *m)
 		}
 		if (args->funeral == 1)
 			return ;
-		usleep(10);
+		usleep(100);
 	}
+}
+
+void ft_sleep(long tts)
+{
+	int chunk_size;
+
+	chunk_size = 100;
+    long remaining_time = tts * 1000;
+    long sleep_time;
+
+    while (remaining_time > 0)
+    {
+        if (remaining_time > chunk_size)
+            sleep_time = chunk_size;
+        else
+            sleep_time = remaining_time;
+        usleep(sleep_time);
+        remaining_time -= sleep_time;
+    }
 }
