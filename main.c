@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:24:45 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/06/25 17:24:35 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:06:50 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int	main(int ac, char **av)
 	parse_philos(n, &n->f, n->n_phil);
 	n->start_ts = get_ms_ts(0);
 	start_threads(n);
+	free_all(n);
 	return (0);
 }

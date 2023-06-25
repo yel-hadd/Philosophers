@@ -6,7 +6,7 @@
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:24:02 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/06/25 17:29:03 by yel-hadd         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:07:19 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ long	get_ms_ts(long subtract);
 int		check_params(t_num *no);
 void	start_threads(t_num *n);
 void	join_threads(t_num *n);
-void	free_forks(t_fork *f);
 char	*ft_strdup(char *s1);
-void	free_data(t_num *n);
 void	*routine(void *ptr);
 void	ft_usleep(long tts);
 size_t	ft_strlen(char *s);
@@ -88,9 +86,9 @@ int		ft_atoi(char *str);
 t_fork	*new_fork(int id);
 int		ft_isdigit(int c);
 void	ft_sleep(long tts);
-void	*check_death(t_philo *philos, t_num *args);
 t_philo	*make_circular(t_philo *ptr);
 void	*check_death(t_philo *philos, t_num *args);
 int		is_all_digits(char *s);
+void	free_all(t_num *head);
 
 #endif

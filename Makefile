@@ -7,10 +7,8 @@ SRCS = main.c \
 	utils/fork_add_back.c \
 	utils/ft_memset.c \
 	utils/new_philo.c \
-	utils/free_data.c \
 	utils/ft_strdup.c \
 	utils/parse_forks.c \
-	utils/free_forks.c \
 	utils/ft_strlen.c \
 	utils/parse_params.c \
 	utils/ft_atoi.c \
@@ -23,8 +21,10 @@ SRCS = main.c \
 	utils/get_ms_ts.c \
 	utils/routine.c \
 	utils/ft_isdigit.c \
-	utils/join_threads.c \
-	utils/start_threads.c
+	utils/start_threads.c \
+	utils/is_all_digits.c \
+	utils/check_death.c \
+	utils/free_all.c
 
 OBJS = $(SRCS:.c=.o)
 
