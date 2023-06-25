@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_usleep.c                                        :+:      :+:    :+:   */
+/*   is_all_digits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yel-hadd <yel-hadd@mail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 19:24:59 by yel-hadd          #+#    #+#             */
-/*   Updated: 2023/06/25 17:16:39 by yel-hadd         ###   ########.fr       */
+/*   Created: 2023/06/25 17:24:05 by yel-hadd          #+#    #+#             */
+/*   Updated: 2023/06/25 17:24:17 by yel-hadd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	ft_usleep(long tts)
+int	is_digit(char c)
 {
-	long	start;
+	return (c >= '0' && c <= '9');
+}
 
-	start = get_ms_ts(0);
-	while (get_ms_ts(start) <= tts)
-		usleep(100);
+int	is_all_digits(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!is_digit(s[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
